@@ -1,3 +1,18 @@
-.here {
-    font-size: 20px
+body {
+    overflow: hidden;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.button {
+    display: flex;
+    background-color: green;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }

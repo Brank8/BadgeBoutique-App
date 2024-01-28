@@ -1,0 +1,103 @@
+header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    position: sticky;
+    top: 0;
+    left: 0;
+    align-items: center;
+    z-index: 35;   
+}
+  
+  .navStyle {
+      width: 40vw;
+      display: flex;
+      justify-content: space-between;
+      background-color: #c251d6;
+      font-size: 18px;
+      font-family: "Comic Sans MS", 'Rajdhani', fantasy, sans-serif;
+      min-width: 420px;
+      z-index: 30;
+  }
+
+  /* @keyframes jelloHorizontal {
+    0%, 100% { transform: skewX(0deg); }
+    15% { transform: skewX(-15deg); }
+    30% { transform: skewX(15deg); }
+    45% { transform: skewX(-10deg); }
+    60% { transform: skewX(10deg); }
+    80% { transform: skewX(-5deg); }
+    90% { transform: skewX(5deg); }
+    100% { transform: skewX(0deg); }
+  }
+  
+  .navStyle {
+    animation: jelloHorizontal 5s ease-in-out;
+  } */
+
+  .navButton {
+    padding: 10px;
+    margin: 5px;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+  }
+    
+  .navButton:hover, .email:hover {
+    color: rgb(153, 254, 0);
+  }
+
+  .navButton {
+    color: #fff;
+    display: inline-block;
+    position: relative;
+  }
+
+  .navButton:after {    
+    background: none repeat scroll 0 0 transparent;
+    bottom: 0;
+    content: "";
+    display: block;
+    height: 7px;
+    left: 50%;
+    position: absolute;
+    background: #f46161;
+    transition: width 0.3s ease 0s, left 0.3s ease 0s;
+    width: 0;
+  }
+
+  .navButton:hover:after { 
+    width: 100%; 
+    left: 0%;
+  }
+
+  .email {
+    color: white;
+    text-decoration: none;
+  }
+
+  .navButton.active, .navButton.active:after {
+    color: rgb(153, 254, 0);
+    /* left: 0%; */
+  }
+  
+  .navButton.active:after {
+    content: "";
+    display: block;
+    height: 7px;
+    position: absolute;
+    background: #f46161;
+  }
+
+
+  .userPicture {
+    width: 50px; /* Adjust size as needed */
+    height: 50px; /* Adjust size as needed */
+    border-radius: 50%; /* Makes the image round */
+    margin-right: 8px;
+  }
+  
+  .userInfo {
+    display: flex;
+    align-items: center;
+  }

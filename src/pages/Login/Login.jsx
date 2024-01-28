@@ -13,7 +13,7 @@ function Login({ onAuthenticated }) {
       const token = localStorage.getItem('token');
       if (token) {
         onAuthenticated();
-        navigate('/home');
+        navigate('/');
       }
     }, [navigate, onAuthenticated]);
   
@@ -22,7 +22,7 @@ function Login({ onAuthenticated }) {
       console.log(decoded);
       localStorage.setItem('token', credentialResponse?.credential);
       onAuthenticated();
-      navigate('/home');
+      navigate('/');
     };
   
     const handleLoginFailure = () => {
@@ -33,7 +33,7 @@ function Login({ onAuthenticated }) {
       
       localStorage.setItem('token', 'guest-token');
       onAuthenticated();
-      navigate('/home');
+      navigate('/');
   };
   
     return (

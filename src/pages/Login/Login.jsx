@@ -4,13 +4,14 @@ import { GoogleLogin } from '@react-oauth/google';
 import { jwtDecode } from 'jwt-decode';
 import PropTypes from 'prop-types';
 import './Login.css'
+import guestImage from '../../../public/guest.jpg';
 
 function Login({ onAuthenticated }) {
   const navigate = useNavigate();
 
   useEffect(() => {
     const token = localStorage.getItem('token');
-    if (token && typeof token === 'string') {
+    if (token && token !== 'guest-token' && typeof token === 'string' && token.split(".").length === 3) {
       try {
         const decoded = jwtDecode(token);
         onAuthenticated({ name: decoded.name, picture: decoded.picture });
@@ -18,6 +19,9 @@ function Login({ onAuthenticated }) {
       } catch (error) {
         console.error('Error decoding token:', error);
       }
+    } else if (token === 'guest-token') {
+      onAuthenticated({ name: 'Guest', picture: guestImage });
+      navigate('/');
     }
   }, [navigate, onAuthenticated]);
 
@@ -39,7 +43,7 @@ function Login({ onAuthenticated }) {
   const handleGuestLogin = () => {
     const guestToken = 'guest-token';
     localStorage.setItem('token', guestToken);
-    onAuthenticated({ token: guestToken, name: 'Guest', picture: "https://images.macrumors.com/t/n4CqVR2eujJL-GkUPhv1oao_PmI=/1600x/article-new/2019/04/guest-user-250x250.jpg" });
+    onAuthenticated({ token: guestToken, name: 'Guest', picture: guestImage });
     navigate('/');
   };
 

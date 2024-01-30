@@ -1,17 +1,18 @@
 header {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     width: 100%;
     position: sticky;
     top: 0;
     left: 0;
     align-items: center;
-    z-index: 35;   
+    z-index: 35; 
+    background-color: green;  
 }
   
   .navStyle {
-      width: 40vw;
+      min-width: 40vw;
       display: flex;
       justify-content: space-between;
       background-color: #c251d6;
@@ -89,15 +90,17 @@ header {
     background: #f46161;
   }
 
-
   .userPicture {
-    width: 50px; /* Adjust size as needed */
-    height: 50px; /* Adjust size as needed */
-    border-radius: 50%; /* Makes the image round */
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
     margin-right: 8px;
   }
   
   .userInfo {
     display: flex;
     align-items: center;
-  }
+    font-size: 18px;
+    font-family: "Comic Sans MS", 'Rajdhani', fantasy, sans-serif;
+    color: gold;
+}

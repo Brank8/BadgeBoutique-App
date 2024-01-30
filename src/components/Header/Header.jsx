@@ -8,11 +8,11 @@ function Header({ onNavigate, onLogout, currentPage, userName, userPicture }) {
     console.log(userName, userPicture); // Add this to debug
     return (
     <header className='header'>
-        <nav className="navStyle">
-        <div className='navButton userInfo'>
-    {userPicture && <img src={userPicture} alt="User" className="userPicture" />}
+        <div className='userInfo'>
+    {userPicture && <img src={userPicture} alt="user" className="userPicture" />}
     <span>{userName}</span>
   </div>
+  <nav className="navStyle">
         <div className={currentPage === 'home' ? 'navButton active' : 'navButton'} onClick={() => onNavigate('home')}>Home</div>
         <div className={currentPage === 'create-badge' ? 'navButton active' : 'navButton'} onClick={() => onNavigate('create-badge')}>Create Badge</div>
         <div className={currentPage === 'cart' ? 'navButton active' : 'navButton'} onClick={() => onNavigate('cart')}>Cart</div>

@@ -13,7 +13,7 @@ function App() {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [currentPage, setCurrentPage] = useState('home');
     const [userName, setUserName] = useState('');
-    const [userPicture, setUserPicture] = useState('');
+    const [userPicture, setUserPicture] = useState('invalid-url.jpg');
 
 useEffect(() => {
   const token = localStorage.getItem('token');
@@ -30,10 +30,11 @@ useEffect(() => {
         try {
           const decoded = jwtDecode(token);
           setIsAuthenticated(true);
-
+          console.log(decoded);
           // Additional checks before setting the userName and userPicture
           if (typeof decoded.name === 'string') {
             setUserName(decoded.name);
+            console.log(decoded);
           }
           
           if (typeof decoded.picture === 'string' && decoded.picture.startsWith('http')) {

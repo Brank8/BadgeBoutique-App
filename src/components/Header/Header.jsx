@@ -57,7 +57,7 @@ function Header({ onNavigate, onLogout, currentPage, userName, userPicture }) {
             <nav className="navbar navStyle" ref={menuRef}>
                 <div className="navbar-container container">
                 <div className='userInfo'>
-                {userPicture && <img src={userPicture} alt="user" className="userPicture"  onError={handleImageError} />}
+                {userPicture && <img src={userPicture} alt="user" className="userPicture"  onError={handleImageError}  draggable="false" />}
                 <span className='userName'>{userName}</span>
             </div>
                     <input type="checkbox" id="menu-toggle" checked={isMenuOpen} onChange={handleToggleMenu}></input>
@@ -82,7 +82,7 @@ function Header({ onNavigate, onLogout, currentPage, userName, userPicture }) {
             </nav>
             <nav className="navStyle desktop-nav">
                 <div className='userInfo'>
-                    {userPicture && <img src={userPicture} alt="user" className="userPicture"  onError={handleImageError} />}
+                    {userPicture && <img src={userPicture} alt="user" className="userPicture"  onError={handleImageError}  draggable="false"/>}
                     <span>{userName}</span>
                 </div>
                 <div className='nav-links'>

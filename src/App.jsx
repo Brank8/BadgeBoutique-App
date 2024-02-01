@@ -3,8 +3,9 @@ import './App.css';
 import Login from './pages/Login/Login';
 import Home from './pages/Home/Home';
 import Header from './components/Header/Header';
-import Cart from './pages/Cart/Cart';
-import CreateBadge from './pages/CreateBadge/CreateBadge';
+import MyCart from './pages/MyCart/MyCart';
+import Bedazzle from './pages/Bedazzle/Bedazzle';
+import MyOrders from './pages/MyOrders/MyOrders';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { jwtDecode } from 'jwt-decode';
 import guestImage from '../public/guest.jpg';
@@ -13,7 +14,7 @@ function App() {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [currentPage, setCurrentPage] = useState('home');
     const [userName, setUserName] = useState('');
-    const [userPicture, setUserPicture] = useState('invalid-url.jpg');
+    const [userPicture, setUserPicture] = useState('');
 
 useEffect(() => {
   const token = localStorage.getItem('token');
@@ -76,17 +77,19 @@ useEffect(() => {
         switch (currentPage) {
             case 'home':
                 return <Home />;
-            case 'create-badge':
-                return <CreateBadge />;
+            case 'bedazzle':
+                return <Bedazzle />;
             case 'cart':
-                return <Cart />;
+                return <MyCart />;
+            case 'orders':
+                return <MyOrders />;    
             default:
                 return <Home />;
         }
     };
 
     return (
-        <GoogleOAuthProvider clientId="621597071561-60flcutacgnaqg6j13016slje92p81d2.apps.googleusercontent.com">
+        <GoogleOAuthProvider clientId="1024947023501-t7j8pg84mpmsaabc5rb3gnurath2s53t.apps.googleusercontent.com">
             {isAuthenticated ? (
                 <>
                     <Header onNavigate={setCurrentPage} onLogout={handleLogout} currentPage={currentPage} userName={userName} userPicture={userPicture} />

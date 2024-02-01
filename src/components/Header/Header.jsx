@@ -8,6 +8,7 @@ import { IoHome } from "react-icons/io5";
 import { FaWandMagicSparkles } from "react-icons/fa6";
 import { GrCart } from "react-icons/gr";
 import { BiLogOut } from "react-icons/bi";
+import { TbTruckDelivery } from "react-icons/tb";
 
 function Header({ onNavigate, onLogout, currentPage, userName, userPicture }) {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -68,8 +69,9 @@ function Header({ onNavigate, onLogout, currentPage, userName, userPicture }) {
                     </label>
                     <ul className="menu-items" style={{ transform: isMenuOpen ? 'translateX(0)' : 'translateX(-100%)' }}>
                         <li><div className={currentPage === 'home' ? 'navButton active' : 'navButton'} onClick={() => handleNavigate('home')}><IoHome />‎ Home</div></li>
-                        <li><div className={currentPage === 'create-badge' ? 'navButton active' : 'navButton'} onClick={() => handleNavigate('create-badge')}><FaWandMagicSparkles />‎ Create Badge</div></li>
+                        <li><div className={currentPage === 'bedazzle' ? 'navButton active' : 'navButton'} onClick={() => handleNavigate('bedazzle')}><FaWandMagicSparkles />‎ Bedazzle</div></li>
                         <li><div className={currentPage === 'cart' ? 'navButton active' : 'navButton'} onClick={() => handleNavigate('cart')}><GrCart />‎ My Cart</div></li>
+                        <li><div className={currentPage === 'orders' ? 'navButton active' : 'navButton'} onClick={() => handleNavigate('orders')}><TbTruckDelivery />‎ My Orders</div></li>
                         <li><div className="navButton email">
                             <a href="mailto:powellbreianna@gmail.com" target="_blank" rel="noopener noreferrer" className="email" onClick={closeMenu}>
                                 <FontAwesomeIcon icon={faEnvelope} />‎ Contact Us
@@ -87,8 +89,9 @@ function Header({ onNavigate, onLogout, currentPage, userName, userPicture }) {
                 </div>
                 <div className='nav-links'>
                     <div className={currentPage === 'home' ? 'navButton active' : 'navButton'} onClick={() => onNavigate('home')}><IoHome />‎ Home</div>
-                    <div className={currentPage === 'create-badge' ? 'navButton active' : 'navButton'} onClick={() => onNavigate('create-badge')}><FaWandMagicSparkles />‎ Create Badge</div>
+                    <div className={currentPage === 'bedazzle' ? 'navButton active' : 'navButton'} onClick={() => onNavigate('bedazzle')}><FaWandMagicSparkles />‎ Bedazzle</div>
                     <div className={currentPage === 'cart' ? 'navButton active' : 'navButton'} onClick={() => onNavigate('cart')}><GrCart />‎ My Cart</div>
+                    <div className={currentPage === 'orders' ? 'navButton active' : 'navButton'} onClick={() => handleNavigate('orders')}><TbTruckDelivery />‎ My Orders</div>
                     <div className="navButton email">
                         <a href="mailto:powellbreianna@gmail.com" target="_blank" rel="noopener noreferrer" className="email">
                             <FontAwesomeIcon icon={faEnvelope} />‎ Contact Us

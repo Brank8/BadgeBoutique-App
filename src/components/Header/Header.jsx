@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import './Header.css';
-import guestImage from '../../../public/guest.jpg';
+import guestImage from '../../assets/guest.jpg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
 import { IoHome } from "react-icons/io5";
@@ -68,17 +68,17 @@ function Header({ onNavigate, onLogout, currentPage, userName, userPicture }) {
                         <span className="line line3"></span>
                     </label>
                     <ul className="menu-items" style={{ transform: isMenuOpen ? 'translateX(0)' : 'translateX(-100%)' }}>
-                        <li><div className={currentPage === 'home' ? 'navButton active' : 'navButton'} onClick={() => handleNavigate('home')}><IoHome />‎ Home</div></li>
-                        <li><div className={currentPage === 'bedazzle' ? 'navButton active' : 'navButton'} onClick={() => handleNavigate('bedazzle')}><FaWandMagicSparkles />‎ Bedazzle</div></li>
-                        <li><div className={currentPage === 'cart' ? 'navButton active' : 'navButton'} onClick={() => handleNavigate('cart')}><GrCart />‎ My Cart</div></li>
-                        <li><div className={currentPage === 'orders' ? 'navButton active' : 'navButton'} onClick={() => handleNavigate('orders')}><TbTruckDelivery />‎ My Orders</div></li>
+                        <li><div className={currentPage === 'home' ? 'navButton active' : 'navButton'} onClick={() => handleNavigate('home')}><div className="icon-container"><IoHome className='icon'/>‎ Home</div></div></li>
+                        <li><div className={currentPage === 'bedazzle' ? 'navButton active' : 'navButton'} onClick={() => handleNavigate('bedazzle')}><div className="icon-container"><FaWandMagicSparkles className='icon'/>‎ Bedazzle</div></div></li>
+                        <li><div className={currentPage === 'cart' ? 'navButton active' : 'navButton'} onClick={() => handleNavigate('cart')}><div className="icon-container"><GrCart className='icon'/>‎ My Cart</div></div></li>
+                        <li><div className={currentPage === 'orders' ? 'navButton active' : 'navButton'} onClick={() => handleNavigate('orders')}><div className="icon-container"><TbTruckDelivery className='icon'/>‎ My Orders</div></div></li>
                         <li><div className="navButton email">
                             <a href="mailto:powellbreianna@gmail.com" target="_blank" rel="noopener noreferrer" className="email" onClick={closeMenu}>
-                                <FontAwesomeIcon icon={faEnvelope} />‎ Contact Us
+                            <div className="icon-container"><FontAwesomeIcon icon={faEnvelope} className='icon'/>‎ Contact Us</div>
                             </a>
                         </div>
                         </li>
-                        <li><div className='navButton' onClick={onLogout}><BiLogOut />‎ Log Out</div></li>
+                        <li><div className='navButton' onClick={onLogout}><div className="icon-container"><BiLogOut className='icon'/>‎ Log Out</div></div></li>
                     </ul>
                 </div>
             </nav>
@@ -88,16 +88,16 @@ function Header({ onNavigate, onLogout, currentPage, userName, userPicture }) {
                     <span>{userName}</span>
                 </div>
                 <div className='nav-links'>
-                    <div className={currentPage === 'home' ? 'navButton active' : 'navButton'} onClick={() => onNavigate('home')}><IoHome />‎ Home</div>
-                    <div className={currentPage === 'bedazzle' ? 'navButton active' : 'navButton'} onClick={() => onNavigate('bedazzle')}><FaWandMagicSparkles />‎ Bedazzle</div>
-                    <div className={currentPage === 'cart' ? 'navButton active' : 'navButton'} onClick={() => onNavigate('cart')}><GrCart />‎ My Cart</div>
-                    <div className={currentPage === 'orders' ? 'navButton active' : 'navButton'} onClick={() => handleNavigate('orders')}><TbTruckDelivery />‎ My Orders</div>
+                    <div className={currentPage === 'home' ? 'navButton active' : 'navButton'} onClick={() => onNavigate('home')}><div className="icon-container"><IoHome className='icon'/>‎ Home</div></div>
+                    <div className={currentPage === 'bedazzle' ? 'navButton active' : 'navButton'} onClick={() => onNavigate('bedazzle')}><div className="icon-container"><FaWandMagicSparkles className='icon'/>‎ Bedazzle</div></div>
+                    <div className={currentPage === 'cart' ? 'navButton active' : 'navButton'} onClick={() => onNavigate('cart')}><div className="icon-container"><GrCart className='icon'/>‎ My Cart</div></div>
+                    <div className={currentPage === 'orders' ? 'navButton active' : 'navButton'} onClick={() => handleNavigate('orders')}><div className="icon-container"><TbTruckDelivery className='icon'/>‎ My Orders</div></div>
                     <div className="navButton email">
                         <a href="mailto:powellbreianna@gmail.com" target="_blank" rel="noopener noreferrer" className="email">
-                            <FontAwesomeIcon icon={faEnvelope} />‎ Contact Us
+                        <div className="icon-container"><FontAwesomeIcon icon={faEnvelope} className='icon'/>‎ Contact Us</div>
                         </a>
                     </div>
-                    <div className='navButton' onClick={onLogout}><BiLogOut />‎ Log Out</div>
+                    <div className='navButton' onClick={onLogout}><div className="icon-container"><BiLogOut className='icon'/>‎ Log Out</div></div>
                 </div>
             </nav>
         </header>

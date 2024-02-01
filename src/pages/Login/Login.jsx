@@ -4,7 +4,7 @@ import { GoogleLogin } from '@react-oauth/google';
 import { jwtDecode } from 'jwt-decode';
 import PropTypes from 'prop-types';
 import './Login.css'
-import guestImage from '../../../public/guest.jpg';
+import guestImage from '../../assets/guest.jpg';
 
 function Login({ onAuthenticated }) {
   const navigate = useNavigate();

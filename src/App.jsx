@@ -8,7 +8,7 @@ import Bedazzle from './pages/Bedazzle/Bedazzle';
 import MyOrders from './pages/MyOrders/MyOrders';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { jwtDecode } from 'jwt-decode';
-import guestImage from '../public/guest.jpg';
+import guestImage from './assets/guest.jpg';
 
 function App() {
     const [isAuthenticated, setIsAuthenticated] = useState(false);

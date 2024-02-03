@@ -56,11 +56,13 @@
 }
 
 .price {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     display: block;
     margin-top: 5px;
     width: 100%;
     text-align: start;
+    font-weight: bold;
+    font-family: 'Courier New', Courier, monospace;
     /* background-color: aliceblue; */
     /* margin-right: 60px; */
 }
@@ -68,6 +70,7 @@
 .amount {
     font-size: 2rem;
     font-weight: bold;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 @media (max-width: 768px) {

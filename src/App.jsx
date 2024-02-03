@@ -79,7 +79,7 @@ useEffect(() => {
     const renderPage = () => {
       switch (currentPage) {
           case 'home':
-              return <Home />;
+            return <Home onNavigate={setCurrentPage} />;
           case 'bedazzle':
               return <Bedazzle onNavigate={setCurrentPage} />;
           case 'cart':
@@ -93,7 +93,7 @@ useEffect(() => {
           case 'createCase':
               return <CreateCase onNavigate={setCurrentPage} />;
           default:
-              return <Home />;
+            return <Home onNavigate={setCurrentPage} />;
       }
   };
 

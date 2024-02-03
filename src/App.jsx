@@ -9,6 +9,9 @@ import MyOrders from './pages/MyOrders/MyOrders';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { jwtDecode } from 'jwt-decode';
 import guestImage from './assets/guest.jpg';
+import CreateBadge from './pages/Bedazzle/CreateBadge/CreateBadge';
+import CreateBracelet from './pages/Bedazzle/CreateBracelet/CreateBracelet';
+import CreateCase from './pages/Bedazzle/CreateCase/CreateCase';
 
 function App() {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -74,19 +77,25 @@ useEffect(() => {
     };
 
     const renderPage = () => {
-        switch (currentPage) {
-            case 'home':
-                return <Home />;
-            case 'bedazzle':
-                return <Bedazzle />;
-            case 'cart':
-                return <MyCart />;
-            case 'orders':
-                return <MyOrders />;    
-            default:
-                return <Home />;
-        }
-    };
+      switch (currentPage) {
+          case 'home':
+              return <Home />;
+          case 'bedazzle':
+              return <Bedazzle onNavigate={setCurrentPage} />;
+          case 'cart':
+              return <MyCart />;
+          case 'orders':
+              return <MyOrders />;
+          case 'createBadge':
+              return <CreateBadge onNavigate={setCurrentPage} />;
+          case 'createBracelet':
+              return <CreateBracelet onNavigate={setCurrentPage} />;
+          case 'createCase':
+              return <CreateCase onNavigate={setCurrentPage} />;
+          default:
+              return <Home />;
+      }
+  };
 
     return (
         <GoogleOAuthProvider clientId="1024947023501-t7j8pg84mpmsaabc5rb3gnurath2s53t.apps.googleusercontent.com">

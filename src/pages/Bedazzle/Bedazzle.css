@@ -4,12 +4,12 @@
     align-items: center;
     justify-content: center;
     background-color: pink;
-    height: 100vh;
-    padding: 0 20px; /* Add padding to maintain space on smaller screens */
+    min-height: 100vh; /* changed from height to min-height */
+    /* padding: 20px; */
 }
 
 .sections {
-    background-color: blue;
+    /* background-color: blue; */
     display: flex;
     flex-direction: row;
     max-width: 90%;
@@ -36,37 +36,38 @@
 }
 
 .section:hover {
-    transform: translateY(-5px); /* Slight raise effect */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Drop shadow for depth */
-}
-
-.section:focus {
-    outline: 2px solid blue; /* Accessible focus outline */
+    box-shadow: 20px 20px 15px rgba(0, 0, 0, 0.2);
+    background-color: aquamarine;
 }
 
 .image-icon {
     height: 250px;
     width: 250px;
-    margin-bottom: 10px;
 }
 
 .item-name {
-    font-size: 1.25rem; /* Larger font size for item names */
-    font-weight: bold; /* Make the names bold */
-    margin-bottom: 15px; /* Space between the name and the image */
-    text-align: center; /* Center the name text */
+    font-size: 1.15rem;
+    font-weight: bold;
+    /* background-color: aliceblue; */
+    width: 100%;
+    margin-bottom: 15px;
+    text-align: start;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 .price {
-    font-size: 1rem; /* Set the base font size for the text */
-    display: block; /* Display as block to ensure it starts on a new line */
-    margin-top: 10px; /* Add some margin at the top */
-    text-align: center; /* Center the text */
+    font-size: 1.5rem;
+    display: block;
+    margin-top: 5px;
+    width: 100%;
+    text-align: start;
+    /* background-color: aliceblue; */
+    /* margin-right: 60px; */
 }
 
 .amount {
-    font-size: 1.5rem; /* Make the amount larger than the rest of the text */
-    font-weight: bold; /* Optional: make the amount bold */
+    font-size: 2rem;
+    font-weight: bold;
 }
 
 @media (max-width: 768px) {
@@ -75,7 +76,13 @@
       align-items: center;
     }
     .section {
-      width: 80%;
+      /* width: 80%; */
       margin: 20px 0;
+    }
+}
+
+@media (min-width: 800px) {
+    body {
+        overflow: hidden;
     }
 }

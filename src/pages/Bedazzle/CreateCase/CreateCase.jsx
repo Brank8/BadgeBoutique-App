@@ -6,7 +6,13 @@ function CreateCase({ onNavigate }) {
     return (
     <div>
         <div onClick={() => onNavigate('bedazzle')}><IoArrowBackOutline className='goBackArrow'/></div>
+        <div className='createCaseContainer'>
         <h1>Create Case</h1>
+        {/* <p>Choose Badge</p>
+        <p>Choose Rhinestone</p>
+        <p>Choose Charm</p> */}
+        <button>Add to Cart</button>
+        </div>
     </div>
     )
   }

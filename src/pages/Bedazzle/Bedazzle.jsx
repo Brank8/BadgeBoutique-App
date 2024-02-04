@@ -8,7 +8,7 @@ function Bedazzle({ onNavigate }) {
 
   return (
       <div className='bedazzle'>
-          <h1 className='text'>Start Designing</h1>
+          <h1 className='text'>Ready To Design?</h1>
           <div className='sections'>
           <div className='section ct1' onClick={() => onNavigate('createBadge')} role="button" tabIndex={0}>
                   <span className="item-name first">Retractable Badge</span>

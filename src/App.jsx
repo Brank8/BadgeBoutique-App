@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import Login from './pages/Login/Login';
 import Home from './pages/Home/Home';
@@ -18,6 +18,7 @@ function App() {
     const [currentPage, setCurrentPage] = useState('home');
     const [userName, setUserName] = useState('');
     const [userPicture, setUserPicture] = useState('');
+    const [cartItems, setCartItems] = useState([]); 
 
 useEffect(() => {
   const token = localStorage.getItem('token');
@@ -76,6 +77,10 @@ useEffect(() => {
         setCurrentPage('login');
     };
 
+    const handleAddToCart = (item) => {
+      setCartItems(prevItems => [...prevItems, item]);
+    };
+
     const renderPage = () => {
       switch (currentPage) {
           case 'home':
@@ -83,11 +88,11 @@ useEffect(() => {
           case 'bedazzle':
               return <Bedazzle onNavigate={setCurrentPage} />;
           case 'cart':
-              return <MyCart />;
+            return <MyCart cartItems={cartItems} />;
           case 'orders':
               return <MyOrders />;
           case 'createBadge':
-              return <CreateBadge onNavigate={setCurrentPage} />;
+              return <CreateBadge onNavigate={setCurrentPage} onAddToCart={handleAddToCart} />;
           case 'createBracelet':
               return <CreateBracelet onNavigate={setCurrentPage} />;
           case 'createCase':

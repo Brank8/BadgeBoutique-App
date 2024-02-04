@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
-import { IoArrowBackOutline } from "react-icons/io5";
+import { IoArrowBackOutline, IoCloseOutline } from "react-icons/io5";
 import "./CreateBadge.css";
 import white from "../../../assets/Badge/white.jpg"
 import yellow from "../../../assets/Badge/yellow.jpg"
@@ -44,27 +44,29 @@ import charm17 from "../../../assets/Badge/charm17.jpg"
 
 
 
-function CreateBadge({ onNavigate }) {
+function CreateBadge({ onNavigate, onAddToCart }) {
     const [selectedColor, setSelectedColor] = useState('')
     const [selectedRhinestone, setSelectedRhinestone] = useState('');
     const [selectedCharm, setSelectedCharm] = useState('');
     const [dropdownOpen, setDropdownOpen] = useState({ rhinestone: false, charm: false });
     const dropdownRef = useRef({ rhinestone: null, charm: null });
-
+    const handleRemoveColor = () => setSelectedColor('');
+    const handleRemoveRhinestone = () => setSelectedRhinestone('');
+    const handleRemoveCharm = () => setSelectedCharm('');
     const colors = [
         { id: '1', src: white, label: 'White' },
         { id: '2', src: yellow, label: 'Yellow' },
-        { id: '3', src: pink, label: 'Pink' },
+        { id: '3', src: pink, label: 'Peach' },
         { id: '4', src: pinkk, label: 'Pink' },
         { id: '5', src: orange, label: 'Orange' },
-        { id: '6', src: blue, label: 'Blue' },
+        { id: '6', src: blue, label: 'Sky Blue' },
         { id: '7', src: red, label: 'Red' },
         { id: '8', src: grey, label: 'Grey' },
         { id: '9', src: green, label: 'Green' },
-        { id: '10', src: bluee, label: 'Blue' },
+        { id: '10', src: bluee, label: 'Royal Blue' },
         { id: '11', src: purple, label: 'Purple' },
-        { id: '12', src: greenn, label: 'Green' },
-        { id: '13', src: blueee, label: 'Blue' },
+        { id: '12', src: greenn, label: 'Army Green' },
+        { id: '13', src: blueee, label: 'Dark Blue' },
         { id: '14', src: black, label: 'Black' }
       ];
 
@@ -130,12 +132,28 @@ function CreateBadge({ onNavigate }) {
     setDropdownOpen(prev => ({ ...prev, charm: false }));
   };
 
+  const handleAddToCart = () => {
+    if (!selectedColor || !selectedRhinestone) {
+      alert('Please select the required options.');
+      return;
+    }
+
+    const item = {
+      color: selectedColor.label,
+      rhinestone: selectedRhinestone.label,
+      charm: selectedCharm ? selectedCharm.label : 'None'
+    };
+
+    onAddToCart(item);
+    onNavigate('cart');
+  };
+
   return (
     <div>
+    <div className='createBadgeContainer'>
       <div onClick={() => onNavigate('bedazzle')}><IoArrowBackOutline className='goBackArrow'/></div>
-      <div className='createBadgeContainer'>
         <h1>Create Badge</h1>
-        <p>Choose Color</p>
+        {/* <p>Let`s start with the color</p> */}
         <div className="dropdownContainer" ref={el => dropdownRef.current.color = el}>
           <div className="dropdownHeader" onClick={() => setDropdownOpen(prev => ({ ...prev, color: !prev.color }))}>
             {selectedColor ? (
@@ -143,14 +161,14 @@ function CreateBadge({ onNavigate }) {
               <img src={selectedColor.src} alt={selectedColor.label} className="selectedImage" />
               <div className="selectedLabel">{selectedColor.label}</div>
             </>
-            ) : 'Select a color'}
+            ) : 'Select Color (required)‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ '}
           </div>
           {dropdownOpen.color && (
             <div className="dropdownListContainer">
               <ul className="dropdownList">
                 {colors.map(color => (
                   <li key={color.id} onClick={() => handleColorSelect(color)}>
-                    <img src={color.src} alt={color.label} style={{ width: '200px', height: '150px' }} />
+                    <img src={color.src} alt={color.label} style={{ width: '200px', height: '100px' }} />
                     <span>{color.label}</span>
                   </li>
                 ))}
@@ -158,7 +176,7 @@ function CreateBadge({ onNavigate }) {
             </div>
           )}
         </div>
-        <p>Choose Rhinestone</p>
+        {/* <p>Don`t forget the rhinestone</p> */}
         <div className="dropdownContainer" ref={el => dropdownRef.current.rhinestone = el}>
           <div className="dropdownHeader" onClick={() => setDropdownOpen(prev => ({ ...prev, rhinestone: !prev.rhinestone }))}>
             {selectedRhinestone ? (
@@ -166,7 +184,7 @@ function CreateBadge({ onNavigate }) {
               <img src={selectedRhinestone.src} alt={selectedRhinestone.label} className="selectedImage" />
               <div className="selectedLabel">{selectedRhinestone.label}</div>
             </>
-            ) : 'Select a Rhinestone'}
+            ) : 'Select Rhinestone (required)‎ '}
           </div>
           {dropdownOpen.rhinestone && (
             <div className="dropdownListContainer">
@@ -182,7 +200,7 @@ function CreateBadge({ onNavigate }) {
           )}
         </div>
 
-        <p>Choose Charm</p>
+        {/* <p>Choose Charm</p> */}
         <div className="dropdownContainer" ref={el => dropdownRef.current.charm = el}>
           <div className="dropdownHeader" onClick={() => setDropdownOpen(prev => ({ ...prev, charm: !prev.charm }))}>
             {selectedCharm ? (
@@ -190,7 +208,7 @@ function CreateBadge({ onNavigate }) {
               <img src={selectedCharm.src} alt={selectedCharm.label} className="selectedImage" />
               <div className="selectedLabel">{selectedCharm.label}</div>
             </>
-            ) : 'Select a Charm'}
+            ) : 'Select Charm (optional)‎ ‎ ‎ ‎ ‎ ‎ ‎ '}
           </div>
           {dropdownOpen.charm && (
             <div className="dropdownListContainer">
@@ -205,15 +223,15 @@ function CreateBadge({ onNavigate }) {
             </div>
           )}
         </div>
-
-        <button>Add to Cart</button>
+        <button onClick={handleAddToCart}>Add to Cart</button>
       </div>
     </div>
   );
 }
 
 CreateBadge.propTypes = {
-  onNavigate: PropTypes.func.isRequired,
-};
-
-export default CreateBadge;
+    onNavigate: PropTypes.func.isRequired,
+    onAddToCart: PropTypes.func.isRequired,
+  };
+  
+  export default CreateBadge;

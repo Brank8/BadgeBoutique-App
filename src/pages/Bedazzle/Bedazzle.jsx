@@ -13,7 +13,7 @@ function Bedazzle({ onNavigate }) {
           <div className='section ct1' onClick={() => onNavigate('createBadge')} role="button" tabIndex={0}>
                   <span className="item-name first">Retractable Badge</span>
                   <img src={image1} alt="Retractable Badge" className='image-icon'/>
-                  <div className="price">Starting at <span className="amount">$7.99</span></div>
+                  <div className="price">Starting at <span className="amount">$8.99</span></div>
               </div>
               <div className='section ct2' onClick={() => onNavigate('createCase')} role="button" tabIndex={0}>
                   <span className="item-name second">Airpod Case</span>

@@ -2,6 +2,20 @@ import React, { useState, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import { IoArrowBackOutline } from "react-icons/io5";
 import "./CreateBadge.css";
+import white from "../../../assets/Badge/white.jpg"
+import yellow from "../../../assets/Badge/yellow.jpg"
+import pink from "../../../assets/Badge/pink.jpg"
+import pinkk from "../../../assets/Badge/pinkk.jpg"
+import orange from "../../../assets/Badge/orange.jpg"
+import blue from "../../../assets/Badge/blue.jpg"
+import red from "../../../assets/Badge/red.jpg"
+import grey from "../../../assets/Badge/grey.jpg"
+import green from "../../../assets/Badge/green.jpg"
+import bluee from "../../../assets/Badge/bluee.jpg"
+import purple from "../../../assets/Badge/purple.jpg"
+import greenn from "../../../assets/Badge/greenn.jpg"
+import blueee from "../../../assets/Badge/blueee.jpg"
+import black from "../../../assets/Badge/black.jpg"
 import rhinestone1 from "../../../assets/Badge/rhinestone1.jpg";
 import rhinestone2 from "../../../assets/Badge/rhinestone2.jpg";
 import rhinestone3 from "../../../assets/Badge/rhinestone3.jpg";
@@ -31,10 +45,28 @@ import charm17 from "../../../assets/Badge/charm17.jpg"
 
 
 function CreateBadge({ onNavigate }) {
+    const [selectedColor, setSelectedColor] = useState('')
     const [selectedRhinestone, setSelectedRhinestone] = useState('');
     const [selectedCharm, setSelectedCharm] = useState('');
     const [dropdownOpen, setDropdownOpen] = useState({ rhinestone: false, charm: false });
     const dropdownRef = useRef({ rhinestone: null, charm: null });
+
+    const colors = [
+        { id: '1', src: white, label: 'White' },
+        { id: '2', src: yellow, label: 'Yellow' },
+        { id: '3', src: pink, label: 'Pink' },
+        { id: '4', src: pinkk, label: 'Pink' },
+        { id: '5', src: orange, label: 'Orange' },
+        { id: '6', src: blue, label: 'Blue' },
+        { id: '7', src: red, label: 'Red' },
+        { id: '8', src: grey, label: 'Grey' },
+        { id: '9', src: green, label: 'Green' },
+        { id: '10', src: bluee, label: 'Blue' },
+        { id: '11', src: purple, label: 'Purple' },
+        { id: '12', src: greenn, label: 'Green' },
+        { id: '13', src: blueee, label: 'Blue' },
+        { id: '14', src: black, label: 'Black' }
+      ];
 
   const rhinestones = [
     { id: "1", src: rhinestone1, label: "Red" },
@@ -66,6 +98,9 @@ function CreateBadge({ onNavigate }) {
 
   useEffect(() => {
     const handleClickOutside = (event) => {
+      if (dropdownRef.current.color && !dropdownRef.current.color.contains(event.target)) {
+        setDropdownOpen(prev => ({ ...prev, color: false }));
+      }
       if (dropdownRef.current.rhinestone && !dropdownRef.current.rhinestone.contains(event.target)) {
         setDropdownOpen(prev => ({ ...prev, rhinestone: false }));
       }
@@ -79,6 +114,11 @@ function CreateBadge({ onNavigate }) {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
+
+  const handleColorSelect = (color) => {
+    setSelectedColor(color);
+    setDropdownOpen(prev => ({ ...prev, color: false }));
+  };
 
   const handleRhinestoneSelect = (rhinestone) => {
     setSelectedRhinestone(rhinestone);
@@ -95,6 +135,29 @@ function CreateBadge({ onNavigate }) {
       <div onClick={() => onNavigate('bedazzle')}><IoArrowBackOutline className='goBackArrow'/></div>
       <div className='createBadgeContainer'>
         <h1>Create Badge</h1>
+        <p>Choose Color</p>
+        <div className="dropdownContainer" ref={el => dropdownRef.current.color = el}>
+          <div className="dropdownHeader" onClick={() => setDropdownOpen(prev => ({ ...prev, color: !prev.color }))}>
+            {selectedColor ? (
+              <>
+              <img src={selectedColor.src} alt={selectedColor.label} className="selectedImage" />
+              <div className="selectedLabel">{selectedColor.label}</div>
+            </>
+            ) : 'Select a color'}
+          </div>
+          {dropdownOpen.color && (
+            <div className="dropdownListContainer">
+              <ul className="dropdownList">
+                {colors.map(color => (
+                  <li key={color.id} onClick={() => handleColorSelect(color)}>
+                    <img src={color.src} alt={color.label} style={{ width: '200px', height: '150px' }} />
+                    <span>{color.label}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
         <p>Choose Rhinestone</p>
         <div className="dropdownContainer" ref={el => dropdownRef.current.rhinestone = el}>
           <div className="dropdownHeader" onClick={() => setDropdownOpen(prev => ({ ...prev, rhinestone: !prev.rhinestone }))}>

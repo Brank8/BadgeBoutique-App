@@ -115,9 +115,27 @@ body {
     top: -5px;
     right: -5px;
     cursor: pointer;
-    color: #ff0000;
+    color: #e24a4ac0;
     font-size: 25px;
   }
+
+  .removeIcon:hover {
+    color: #ff0000;
+  }
+
+  @keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
+  }
+  
+.errorShake {
+    animation: shake 0.5s ease-in-out;
+    color: red;
+  }
+
 
 button {
     padding: 10px 20px;

@@ -50,9 +50,27 @@ function CreateBadge({ onNavigate, onAddToCart }) {
     const [selectedCharm, setSelectedCharm] = useState('');
     const [dropdownOpen, setDropdownOpen] = useState({ rhinestone: false, charm: false });
     const dropdownRef = useRef({ rhinestone: null, charm: null });
-    const handleRemoveColor = () => setSelectedColor('');
-    const handleRemoveRhinestone = () => setSelectedRhinestone('');
-    const handleRemoveCharm = () => setSelectedCharm('');
+    const [colorError, setColorError] = useState(false);
+    const [rhinestoneError, setRhinestoneError] = useState(false);
+    const [forceRerenderKey, setForceRerenderKey] = useState(0);
+
+    const handleRemoveColor = (e) => {
+        e.stopPropagation();  // Prevent click event from bubbling up
+        setSelectedColor('');
+        setDropdownOpen(prev => ({ ...prev, color: false }));
+      };
+      
+      const handleRemoveRhinestone = (e) => {
+        e.stopPropagation();  // Prevent click event from bubbling up
+        setSelectedRhinestone('');
+        setDropdownOpen(prev => ({ ...prev, rhinestone: false }));
+      };
+      
+      const handleRemoveCharm = (e) => {
+        e.stopPropagation();  // Prevent click event from bubbling up
+        setSelectedCharm('');
+        setDropdownOpen(prev => ({ ...prev, charm: false }));
+      };
 
     const colors = [
         { id: '1', src: white, label: 'White' },
@@ -134,20 +152,41 @@ function CreateBadge({ onNavigate, onAddToCart }) {
   };
 
   const handleAddToCart = () => {
-    if (!selectedColor || !selectedRhinestone) {
-      alert('Please select the required options.');
-      return;
-    }
-
-    const item = {
-      color: selectedColor.label,
-      rhinestone: selectedRhinestone.label,
-      charm: selectedCharm ? selectedCharm.label : 'None'
-    };
-
-    onAddToCart(item);
-    onNavigate('cart');
+    // Reset errors first
+    setColorError(false);
+    setRhinestoneError(false);
+  
+    // Use a timeout to ensure the class is toggled to reset the animation
+    setTimeout(() => {
+      let error = false;
+  
+      if (!selectedColor) {
+        setColorError(true);
+        error = true;
+      }
+  
+      if (!selectedRhinestone) {
+        setRhinestoneError(true);
+        error = true;
+      }
+  
+      if (!error) {
+        // Proceed with adding to cart
+        const item = {
+          color: selectedColor.label,
+          rhinestone: selectedRhinestone.label,
+          charm: selectedCharm ? selectedCharm.label : 'None'
+        };
+  
+        onAddToCart(item);
+        onNavigate('cart');
+      }
+    }, 0); // timeout set to 0 to allow state to be set in the next event loop
+  
+    // Force re-render to reset the animation
+    setForceRerenderKey(prev => prev + 1);
   };
+  
 
   return (
     <div>
@@ -158,12 +197,12 @@ function CreateBadge({ onNavigate, onAddToCart }) {
         <h1>Create Badge</h1>
         {/* <p>Let`s start with the color</p> */}
         <div className="dropdownContainer" ref={el => dropdownRef.current.color = el}>
-          <div className="dropdownHeader" onClick={() => setDropdownOpen(prev => ({ ...prev, color: !prev.color }))}>
+        <div className={`dropdownHeader ${colorError ? 'errorShake' : ''}`} onClick={() => setDropdownOpen(prev => ({ ...prev, color: !prev.color }))}>
             {selectedColor ? (
             <div className="selectedItemContainer">
             <img src={selectedColor.src} alt={selectedColor.label} className="selectedImage" />
             <div className="selectedLabel">{selectedColor.label}</div>
-            <IoCloseOutline className="removeIcon" onClick={handleRemoveColor} />
+            <IoCloseOutline className="removeIcon" onClick={(e) => handleRemoveColor(e)} />
           </div>
             ) : 'Select Color (required)‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ '}
           </div>
@@ -182,12 +221,12 @@ function CreateBadge({ onNavigate, onAddToCart }) {
         </div>
         {/* <p>Don`t forget the rhinestone</p> */}
         <div className="dropdownContainer" ref={el => dropdownRef.current.rhinestone = el}>
-          <div className="dropdownHeader" onClick={() => setDropdownOpen(prev => ({ ...prev, rhinestone: !prev.rhinestone }))}>
+          <div className={`dropdownHeader ${rhinestoneError ? 'errorShake' : ''}`} onClick={() => setDropdownOpen(prev => ({ ...prev, rhinestone: !prev.rhinestone }))}>
             {selectedRhinestone ? (
               <div className="selectedItemContainer">
               <img src={selectedRhinestone.src} alt={selectedRhinestone.label} className="selectedImage" />
               <div className="selectedLabel">{selectedRhinestone.label}</div>
-              <IoCloseOutline className="removeIcon" onClick={handleRemoveRhinestone} />
+              <IoCloseOutline className="removeIcon" onClick={(e) => handleRemoveRhinestone(e)} />
           </div>
             ) : 'Select Rhinestone (required)‎ '}
           </div>
@@ -212,7 +251,7 @@ function CreateBadge({ onNavigate, onAddToCart }) {
               <div className="selectedItemContainer">
               <img src={selectedCharm.src} alt={selectedCharm.label} className="selectedImage" />
               <div className="selectedLabel">{selectedCharm.label}</div>
-              <IoCloseOutline className="removeIcon" onClick={handleRemoveCharm} />
+              <IoCloseOutline className="removeIcon" onClick={(e) => handleRemoveCharm(e)} />
           </div>
             ) : 'Select Charm (optional)‎ ‎ ‎ ‎ ‎ ‎ ‎ '}
           </div>

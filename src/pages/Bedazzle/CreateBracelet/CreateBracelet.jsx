@@ -5,8 +5,10 @@ import { IoArrowBackOutline } from "react-icons/io5";
 function CreateBracelet({ onNavigate }) {
     return (
         <div>
-        <div onClick={() => onNavigate('bedazzle')}><IoArrowBackOutline className='goBackArrow'/></div>
-        <div className='createBraceletContainer'>
+            <div className='createBraceletContainer'>
+            <div className="arrowContainer">
+        <IoArrowBackOutline className='goBackArrow' onClick={() => onNavigate('bedazzle')}/>
+      </div>
         <h1>Create Bracelet</h1>
         <p>Choose Beads Color</p>
         <p>Choose Flower Color</p>

@@ -1,21 +1,32 @@
-import React from 'react';
-import './MyCart.css';
+import React from "react";
+import "./MyCart.css";
 import PropTypes from "prop-types";
+import { MdOutlineAddShoppingCart } from "react-icons/md";
 
-function MyCart({ cartItems }) {
+function MyCart({ cartItems, onNavigate }) {
   return (
-    <div>
-      <h1 className='here'>MyCart page</h1>
+    <div className="myCart">
       {cartItems.length === 0 ? (
-        <p>No items in cart.</p>
+        <div className="emptyCart">
+          <div className="cartTextIconContainer">
+            <p className="noItemsText">No items in cart yet.</p>
+            <MdOutlineAddShoppingCart className="cartIcon" />
+          </div>
+          <button onClick={() => onNavigate("bedazzle")}>
+            Start Shopping Now
+          </button>
+        </div>
       ) : (
-        <ul>
+        <div>
+          {/* <ul> */}
           {cartItems.map((item, index) => (
-            <li key={index}>
-              Color: {item.color}, Rhinestone: {item.rhinestone}, Charm: {item.charm}
-            </li>
+            <div key={index}>
+              Color: {item.color}, Rhinestone: {item.rhinestone}, Charm:{" "}
+              {item.charm}
+            </div>
           ))}
-        </ul>
+          {/* </ul> */}
+        </div>
       )}
     </div>
   );
@@ -23,6 +34,7 @@ function MyCart({ cartItems }) {
 
 MyCart.propTypes = {
   cartItems: PropTypes.array.isRequired,
+  onNavigate: PropTypes.func.isRequired,
 };
 
 export default MyCart;

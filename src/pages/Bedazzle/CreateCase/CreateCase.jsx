@@ -5,8 +5,10 @@ import { IoArrowBackOutline } from "react-icons/io5";
 function CreateCase({ onNavigate }) {
     return (
     <div>
-        <div onClick={() => onNavigate('bedazzle')}><IoArrowBackOutline className='goBackArrow'/></div>
         <div className='createCaseContainer'>
+        <div className="arrowContainer">
+        <IoArrowBackOutline className='goBackArrow' onClick={() => onNavigate('bedazzle')}/>
+      </div>
         <h1>Create Case</h1>
         {/* <p>Choose Badge</p>
         <p>Choose Rhinestone</p>

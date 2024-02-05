@@ -53,6 +53,7 @@ function CreateBadge({ onNavigate, onAddToCart }) {
     const handleRemoveColor = () => setSelectedColor('');
     const handleRemoveRhinestone = () => setSelectedRhinestone('');
     const handleRemoveCharm = () => setSelectedCharm('');
+
     const colors = [
         { id: '1', src: white, label: 'White' },
         { id: '2', src: yellow, label: 'Yellow' },
@@ -151,16 +152,19 @@ function CreateBadge({ onNavigate, onAddToCart }) {
   return (
     <div>
     <div className='createBadgeContainer'>
-      <div onClick={() => onNavigate('bedazzle')}><IoArrowBackOutline className='goBackArrow'/></div>
+    <div className="arrowContainer">
+        <IoArrowBackOutline className='goBackArrow' onClick={() => onNavigate('bedazzle')}/>
+      </div>
         <h1>Create Badge</h1>
         {/* <p>Let`s start with the color</p> */}
         <div className="dropdownContainer" ref={el => dropdownRef.current.color = el}>
           <div className="dropdownHeader" onClick={() => setDropdownOpen(prev => ({ ...prev, color: !prev.color }))}>
             {selectedColor ? (
-              <>
-              <img src={selectedColor.src} alt={selectedColor.label} className="selectedImage" />
-              <div className="selectedLabel">{selectedColor.label}</div>
-            </>
+            <div className="selectedItemContainer">
+            <img src={selectedColor.src} alt={selectedColor.label} className="selectedImage" />
+            <div className="selectedLabel">{selectedColor.label}</div>
+            <IoCloseOutline className="removeIcon" onClick={handleRemoveColor} />
+          </div>
             ) : 'Select Color (required)‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ '}
           </div>
           {dropdownOpen.color && (
@@ -180,10 +184,11 @@ function CreateBadge({ onNavigate, onAddToCart }) {
         <div className="dropdownContainer" ref={el => dropdownRef.current.rhinestone = el}>
           <div className="dropdownHeader" onClick={() => setDropdownOpen(prev => ({ ...prev, rhinestone: !prev.rhinestone }))}>
             {selectedRhinestone ? (
-              <>
+              <div className="selectedItemContainer">
               <img src={selectedRhinestone.src} alt={selectedRhinestone.label} className="selectedImage" />
               <div className="selectedLabel">{selectedRhinestone.label}</div>
-            </>
+              <IoCloseOutline className="removeIcon" onClick={handleRemoveRhinestone} />
+          </div>
             ) : 'Select Rhinestone (required)‎ '}
           </div>
           {dropdownOpen.rhinestone && (
@@ -191,7 +196,7 @@ function CreateBadge({ onNavigate, onAddToCart }) {
               <ul className="dropdownList">
                 {rhinestones.map(rhinestone => (
                   <li key={rhinestone.id} onClick={() => handleRhinestoneSelect(rhinestone)}>
-                    <img src={rhinestone.src} alt={rhinestone.label} style={{ width: '200px', height: '150px' }} />
+                    <img src={rhinestone.src} alt={rhinestone.label} style={{ width: '200px', height: '100px' }} />
                     <span>{rhinestone.label}</span>
                   </li>
                 ))}
@@ -204,10 +209,11 @@ function CreateBadge({ onNavigate, onAddToCart }) {
         <div className="dropdownContainer" ref={el => dropdownRef.current.charm = el}>
           <div className="dropdownHeader" onClick={() => setDropdownOpen(prev => ({ ...prev, charm: !prev.charm }))}>
             {selectedCharm ? (
-              <>
+              <div className="selectedItemContainer">
               <img src={selectedCharm.src} alt={selectedCharm.label} className="selectedImage" />
               <div className="selectedLabel">{selectedCharm.label}</div>
-            </>
+              <IoCloseOutline className="removeIcon" onClick={handleRemoveCharm} />
+          </div>
             ) : 'Select Charm (optional)‎ ‎ ‎ ‎ ‎ ‎ ‎ '}
           </div>
           {dropdownOpen.charm && (
@@ -215,7 +221,7 @@ function CreateBadge({ onNavigate, onAddToCart }) {
               <ul className="dropdownList">
                 {charms.map(charm => (
                   <li key={charm.id} onClick={() => handleCharmSelect(charm)}>
-                    <img src={charm.src} alt={charm.label} style={{ width: '200px', height: '150px' }} />
+                    <img src={charm.src} alt={charm.label} style={{ width: '200px', height: '100px' }} />
                     <span>{charm.label}</span>
                   </li>
                 ))}

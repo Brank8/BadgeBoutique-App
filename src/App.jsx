@@ -88,7 +88,7 @@ useEffect(() => {
           case 'bedazzle':
               return <Bedazzle onNavigate={setCurrentPage} />;
           case 'cart':
-            return <MyCart cartItems={cartItems} />;
+            return <MyCart onNavigate={setCurrentPage} cartItems={cartItems} />;
           case 'orders':
               return <MyOrders />;
           case 'createBadge':

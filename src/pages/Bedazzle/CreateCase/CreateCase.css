@@ -5,10 +5,17 @@
     justify-content: center;
     flex-direction: column;
     height: 100vh;
+    position: relative;
+}
+
+.arrowContainer {
+    position: absolute;
+    top: 10px; /* Adjust as needed */
+    left: 10px; /* Adjust as needed */
+    cursor: pointer; /* If you want to show pointer cursor on hover */
 }
 
 .goBackArrow {
-    width: 70px;
-    height: 50px;
-    background-color: aqua;
+    font-size: 30px; /* Adjust icon size as needed */
+    color: #000; /* Adjust icon color as needed */
 }

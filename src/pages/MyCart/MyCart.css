@@ -17,3 +17,44 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+.cartContainer {
+    background-color: aquamarine;
+    display: flex;
+    gap: 100px;
+    flex-direction: row;
+    align-items: center;
+    max-width: 85vw;
+}
+
+.cartItems {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(243, 184, 7);
+    padding: 10px;
+    border-radius: 15px;
+    /* align-items: center;
+    justify-content: center; */
+    
+}
+
+.insideText {
+    /* background-color: blue; */
+    display: flex;
+    flex-direction: column;
+}
+
+.editDeleteButtons {
+    /* background-color: black; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bottomButtons {
+    background-color: green;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    width: 100%;
+    gap: 10px;
+}

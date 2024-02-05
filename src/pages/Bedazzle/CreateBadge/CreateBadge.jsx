@@ -196,12 +196,13 @@ function CreateBadge({ onNavigate, onAddToCart }) {
       </div>
         <h1>Create Badge</h1>
         {/* <p>Let`s start with the color</p> */}
+        <div className="threeSections">
         <div className="dropdownContainer" ref={el => dropdownRef.current.color = el}>
         <div className={`dropdownHeader ${colorError ? 'errorShake' : ''}`} onClick={() => setDropdownOpen(prev => ({ ...prev, color: !prev.color }))}>
             {selectedColor ? (
             <div className="selectedItemContainer">
             <img src={selectedColor.src} alt={selectedColor.label} className="selectedImage" />
-            <div className="selectedLabel">{selectedColor.label}</div>
+            <div className="selectedLabel">{selectedColor.label} Badge</div>
             <IoCloseOutline className="removeIcon" onClick={(e) => handleRemoveColor(e)} />
           </div>
             ) : 'Select Color (required)‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ '}
@@ -225,7 +226,7 @@ function CreateBadge({ onNavigate, onAddToCart }) {
             {selectedRhinestone ? (
               <div className="selectedItemContainer">
               <img src={selectedRhinestone.src} alt={selectedRhinestone.label} className="selectedImage" />
-              <div className="selectedLabel">{selectedRhinestone.label}</div>
+              <div className="selectedLabel">{selectedRhinestone.label} Rhinestone</div>
               <IoCloseOutline className="removeIcon" onClick={(e) => handleRemoveRhinestone(e)} />
           </div>
             ) : 'Select Rhinestone (required)‎ '}
@@ -267,6 +268,7 @@ function CreateBadge({ onNavigate, onAddToCart }) {
               </ul>
             </div>
           )}
+        </div>
         </div>
         <button onClick={handleAddToCart}>Add to Cart</button>
       </div>

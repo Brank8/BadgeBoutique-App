@@ -19,13 +19,26 @@ function MyCart({ cartItems, onNavigate }) {
       ) : (
         <div>
           {/* <ul> */}
+          <div className="cartContainer" >
           {cartItems.map((item, index) => (
-            <div key={index}>
-              Color: {item.color}, Rhinestone: {item.rhinestone}, Charm:{" "}
-              {item.charm}
+            <div  className="cartItems" key={index}>
+              <div className="insideText">
+              <p>Color: {item.color}</p>
+              <p>Rhinestone: {item.rhinestone}</p>
+              <p>Charm:{" "} {item.charm}</p>
+              </div>
+              <div className="editDeleteButtons">
+              <button>Edit</button>
+              <button>Delete</button>
+              </div>
             </div>
           ))}
+          </div>
           {/* </ul> */}
+          <div className="bottomButtons">
+          <button onClick={() => onNavigate("bedazzle")}>Add More Items</button>
+          <button>Checkout</button>
+        </div>
         </div>
       )}
     </div>

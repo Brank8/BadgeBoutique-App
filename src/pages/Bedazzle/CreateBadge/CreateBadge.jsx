@@ -244,7 +244,6 @@ function CreateBadge({ onNavigate, onAddToCart }) {
             </div>
           )}
         </div>
-
         {/* <p>Choose Charm</p> */}
         <div className="dropdownContainer" ref={el => dropdownRef.current.charm = el}>
           <div className="dropdownHeader" onClick={() => setDropdownOpen(prev => ({ ...prev, charm: !prev.charm }))}>

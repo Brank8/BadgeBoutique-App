@@ -94,9 +94,9 @@ useEffect(() => {
           case 'createBadge':
               return <CreateBadge onNavigate={setCurrentPage} onAddToCart={handleAddToCart} />;
           case 'createBracelet':
-              return <CreateBracelet onNavigate={setCurrentPage} />;
+              return <CreateBracelet onNavigate={setCurrentPage} onAddToCart={handleAddToCart} />;
           case 'createCase':
-              return <CreateCase onNavigate={setCurrentPage} />;
+              return <CreateCase onNavigate={setCurrentPage} onAddToCart={handleAddToCart} />;
           default:
             return <Home onNavigate={setCurrentPage} />;
       }

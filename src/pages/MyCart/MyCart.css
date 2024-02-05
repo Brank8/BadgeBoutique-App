@@ -20,10 +20,15 @@
 .cartContainer {
     background-color: aquamarine;
     display: flex;
-    gap: 100px;
+    gap: 30px;
     flex-direction: row;
-    align-items: center;
-    max-width: 85vw;
+    /* align-items: center; */
+    justify-content: center;
+    width: 90vw;
+    /* max-width: 100%; */
+    /* width: 100%; */
+    flex-wrap: wrap;
+    padding-block: 20px;
 }
 
 .cartItems {
@@ -32,9 +37,10 @@
     background-color: rgb(243, 184, 7);
     padding: 10px;
     border-radius: 15px;
+    width: 180px;
+    max-width: 200px;
     /* align-items: center;
     justify-content: center; */
-    
 }
 
 .insideText {
@@ -48,13 +54,21 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 10px;
 }
 
 .bottomButtons {
     background-color: green;
     display: flex;
     justify-content: center;
-    flex-direction: row;
-    width: 100%;
-    gap: 10px;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 20px;
+}
+
+@media (max-width: 500px) {
+    .cartContainer {
+      flex-direction: column;
+      align-items: center;
+    }
 }

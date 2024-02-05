@@ -80,6 +80,12 @@ useEffect(() => {
     const handleAddToCart = (item) => {
       setCartItems(prevItems => [...prevItems, item]);
     };
+    
+    const handleDeleteItem = (index) => {
+      if(window.confirm('Are you sure you want to delete this item?')) {
+        setCartItems(prevItems => prevItems.filter((_, i) => i !== index));
+      }
+    };
 
     const renderPage = () => {
       switch (currentPage) {
@@ -88,7 +94,7 @@ useEffect(() => {
           case 'bedazzle':
               return <Bedazzle onNavigate={setCurrentPage} />;
           case 'cart':
-            return <MyCart onNavigate={setCurrentPage} cartItems={cartItems} />;
+            return <MyCart onNavigate={setCurrentPage} cartItems={cartItems} onDeleteItem={handleDeleteItem} />;
           case 'orders':
               return <MyOrders />;
           case 'createBadge':

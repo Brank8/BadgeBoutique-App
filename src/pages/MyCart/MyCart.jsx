@@ -3,7 +3,7 @@ import "./MyCart.css";
 import PropTypes from "prop-types";
 import { MdOutlineAddShoppingCart } from "react-icons/md";
 
-function MyCart({ cartItems, onNavigate, onEditItem, onDeleteItem }) {
+function MyCart({ cartItems, onNavigate, onDeleteItem }) {
   return (
     <div className="myCart">
       {cartItems.length === 0 ? (
@@ -48,7 +48,6 @@ function MyCart({ cartItems, onNavigate, onEditItem, onDeleteItem }) {
 MyCart.propTypes = {
   cartItems: PropTypes.array.isRequired,
   onNavigate: PropTypes.func.isRequired,
-  onEditItem: PropTypes.func.isRequired,
   onDeleteItem: PropTypes.func.isRequired,
 };
 
